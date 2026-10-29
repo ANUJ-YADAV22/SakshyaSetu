@@ -1,0 +1,13 @@
+{
+  "_label": "SYNTHETIC DEMO DATA - fictitious institutions. No AICTE system is queried or claimed.",
+  "institutions": [
+    {"aicte_id": "DEMO-1-0001", "institution_name": "Sahyadri Institute of Technology", "registration_number": "MH/DEMO/1001/2005",
+     "approved_intake": 60, "pending_inquiry": false, "adapter_state": "online"},
+    {"aicte_id": "DEMO-1-0002", "institution_name": "Narmada College of Engineering", "registration_number": "MP/DEMO/2002/2011",
+     "approved_intake": 120, "pending_inquiry": true, "adapter_state": "online"},
+    {"aicte_id": "DEMO-1-0003", "institution_name": "Vindhya Polytechnic", "registration_number": "MP/DEMO/3003/2015",
+     "approved_intake": 90, "pending_inquiry": false, "adapter_state": "unavailable"},
+    {"aicte_id": "DEMO-1-0004", "institution_name": "Godavari School of Management", "registration_number": "TS/DEMO/4004/2018",
+     "approved_intake": 60, "pending_inquiry": false, "adapter_state": "pending"}
+  ]
+}

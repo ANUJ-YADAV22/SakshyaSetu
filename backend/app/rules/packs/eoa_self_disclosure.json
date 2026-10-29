@@ -1,0 +1,761 @@
+{
+  "id": "eoa_self_disclosure",
+  "name": "EoA based on Self-Disclosure",
+  "scope": "eoa_self_disclosure",
+  "version": "1.0.0",
+  "effective_date": "2024-01-01",
+  "source_handbook": "AICTE Approval Process Handbook (edition/year to be confirmed by regulatory expert)",
+  "approval": "approved",
+  "clause": "Cl. 2.5; Annexure 2.1",
+  "checklist": [
+    {
+      "doc_type": "occupancy_certificate",
+      "label": "Occupancy certificate",
+      "required": true
+    },
+    {
+      "doc_type": "structural_stability_certificate",
+      "label": "Structural stability certificate",
+      "required": true
+    },
+    {
+      "doc_type": "fire_noc",
+      "label": "Fire certificate / NOC",
+      "required": true
+    },
+    {
+      "doc_type": "satellite_map_evidence",
+      "label": "Satellite / map evidence",
+      "required": true
+    },
+    {
+      "doc_type": "audited_accounts",
+      "label": "Audited accounts",
+      "required": true
+    },
+    {
+      "doc_type": "affidavit",
+      "label": "Affidavit 2",
+      "required": true
+    },
+    {
+      "doc_type": "floor_plan",
+      "label": "Floor plan",
+      "required": false
+    }
+  ],
+  "ambiguities": [],
+  "rules": [
+    {
+      "rule_id": "APH-2.5-DOC-001",
+      "clause": "Cl. 2.5 / Annexure 2.1",
+      "clause_confirmed": false,
+      "title": "Occupancy certificate submitted",
+      "family": "completeness",
+      "approval": "approved",
+      "severity": "major",
+      "tier": "A",
+      "message_template": "Required document missing: {label}.",
+      "check": {
+        "type": "document_present",
+        "params": {
+          "doc_type": "occupancy_certificate",
+          "label": "Occupancy certificate"
+        }
+      },
+      "tests": [
+        {
+          "name": "absent -> deficiency",
+          "expect": "deficiency",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": []
+          }
+        },
+        {
+          "name": "present -> pass",
+          "expect": "pass",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [
+              {
+                "type": "occupancy_certificate",
+                "fields": {}
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "APH-2.5-DOC-002",
+      "clause": "Cl. 2.5 / Annexure 2.1",
+      "clause_confirmed": false,
+      "title": "Structural stability certificate submitted",
+      "family": "completeness",
+      "approval": "approved",
+      "severity": "major",
+      "tier": "A",
+      "message_template": "Required document missing: {label}.",
+      "check": {
+        "type": "document_present",
+        "params": {
+          "doc_type": "structural_stability_certificate",
+          "label": "Structural stability certificate"
+        }
+      },
+      "tests": [
+        {
+          "name": "absent -> deficiency",
+          "expect": "deficiency",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": []
+          }
+        },
+        {
+          "name": "present -> pass",
+          "expect": "pass",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [
+              {
+                "type": "structural_stability_certificate",
+                "fields": {}
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "APH-2.5-DOC-003",
+      "clause": "Cl. 2.5 / Annexure 2.1",
+      "clause_confirmed": false,
+      "title": "Fire certificate / NOC submitted",
+      "family": "completeness",
+      "approval": "approved",
+      "severity": "major",
+      "tier": "A",
+      "message_template": "Required document missing: {label}.",
+      "check": {
+        "type": "document_present",
+        "params": {
+          "doc_type": "fire_noc",
+          "label": "Fire certificate / NOC"
+        }
+      },
+      "tests": [
+        {
+          "name": "absent -> deficiency",
+          "expect": "deficiency",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": []
+          }
+        },
+        {
+          "name": "present -> pass",
+          "expect": "pass",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [
+              {
+                "type": "fire_noc",
+                "fields": {}
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "APH-2.5-DOC-004",
+      "clause": "Cl. 2.5 / Annexure 2.1",
+      "clause_confirmed": false,
+      "title": "Satellite / map evidence submitted",
+      "family": "completeness",
+      "approval": "approved",
+      "severity": "major",
+      "tier": "A",
+      "message_template": "Required document missing: {label}.",
+      "check": {
+        "type": "document_present",
+        "params": {
+          "doc_type": "satellite_map_evidence",
+          "label": "Satellite / map evidence"
+        }
+      },
+      "tests": [
+        {
+          "name": "absent -> deficiency",
+          "expect": "deficiency",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": []
+          }
+        },
+        {
+          "name": "present -> pass",
+          "expect": "pass",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [
+              {
+                "type": "satellite_map_evidence",
+                "fields": {}
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "APH-2.5-DOC-005",
+      "clause": "Cl. 2.5 / Annexure 2.1",
+      "clause_confirmed": false,
+      "title": "Audited accounts submitted",
+      "family": "completeness",
+      "approval": "approved",
+      "severity": "major",
+      "tier": "A",
+      "message_template": "Required document missing: {label}.",
+      "check": {
+        "type": "document_present",
+        "params": {
+          "doc_type": "audited_accounts",
+          "label": "Audited accounts"
+        }
+      },
+      "tests": [
+        {
+          "name": "absent -> deficiency",
+          "expect": "deficiency",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": []
+          }
+        },
+        {
+          "name": "present -> pass",
+          "expect": "pass",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [
+              {
+                "type": "audited_accounts",
+                "fields": {}
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "APH-2.5-DOC-006",
+      "clause": "Cl. 2.5 / Annexure 2.1",
+      "clause_confirmed": false,
+      "title": "Affidavit 2 submitted",
+      "family": "completeness",
+      "approval": "approved",
+      "severity": "major",
+      "tier": "A",
+      "message_template": "Required document missing: {label}.",
+      "check": {
+        "type": "document_present",
+        "params": {
+          "doc_type": "affidavit",
+          "label": "Affidavit 2"
+        }
+      },
+      "tests": [
+        {
+          "name": "absent -> deficiency",
+          "expect": "deficiency",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": []
+          }
+        },
+        {
+          "name": "present -> pass",
+          "expect": "pass",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [
+              {
+                "type": "affidavit",
+                "fields": {}
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "APH-2.5-FLD-001",
+      "clause": "Cl. 2.5",
+      "clause_confirmed": false,
+      "title": "Fire certificate: required fields",
+      "family": "completeness",
+      "approval": "approved",
+      "severity": "major",
+      "tier": "A",
+      "message_template": "{label}: required field(s) not found: {missing}.",
+      "check": {
+        "type": "field_present",
+        "params": {
+          "doc_type": "fire_noc",
+          "fields": [
+            "issuer",
+            "certificate_number",
+            "issue_date",
+            "validity_end"
+          ]
+        }
+      },
+      "tests": [
+        {
+          "name": "missing field -> deficiency",
+          "expect": "deficiency",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [
+              {
+                "type": "fire_noc",
+                "fields": {
+                  "issuer": "X"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "all present -> pass",
+          "expect": "pass",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [
+              {
+                "type": "fire_noc",
+                "fields": {
+                  "issuer": "X-1",
+                  "certificate_number": "X-1",
+                  "issue_date": "30/06/2030",
+                  "validity_end": "30/06/2030"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "APH-2.5-FLD-002",
+      "clause": "Cl. 2.5",
+      "clause_confirmed": false,
+      "title": "Occupancy certificate: required fields",
+      "family": "completeness",
+      "approval": "approved",
+      "severity": "major",
+      "tier": "A",
+      "message_template": "{label}: required field(s) not found: {missing}.",
+      "check": {
+        "type": "field_present",
+        "params": {
+          "doc_type": "occupancy_certificate",
+          "fields": [
+            "issuer",
+            "certificate_number",
+            "issue_date",
+            "validity_end"
+          ]
+        }
+      },
+      "tests": [
+        {
+          "name": "missing field -> deficiency",
+          "expect": "deficiency",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [
+              {
+                "type": "occupancy_certificate",
+                "fields": {
+                  "issuer": "X"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "all present -> pass",
+          "expect": "pass",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [
+              {
+                "type": "occupancy_certificate",
+                "fields": {
+                  "issuer": "X-1",
+                  "certificate_number": "X-1",
+                  "issue_date": "30/06/2030",
+                  "validity_end": "30/06/2030"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "APH-2.5-FLD-003",
+      "clause": "Cl. 2.5",
+      "clause_confirmed": false,
+      "title": "Structural stability certificate: required fields",
+      "family": "completeness",
+      "approval": "approved",
+      "severity": "major",
+      "tier": "A",
+      "message_template": "{label}: required field(s) not found: {missing}.",
+      "check": {
+        "type": "field_present",
+        "params": {
+          "doc_type": "structural_stability_certificate",
+          "fields": [
+            "issuer",
+            "certificate_number",
+            "issue_date",
+            "validity_end"
+          ]
+        }
+      },
+      "tests": [
+        {
+          "name": "missing field -> deficiency",
+          "expect": "deficiency",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [
+              {
+                "type": "structural_stability_certificate",
+                "fields": {
+                  "issuer": "X"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "all present -> pass",
+          "expect": "pass",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [
+              {
+                "type": "structural_stability_certificate",
+                "fields": {
+                  "issuer": "X-1",
+                  "certificate_number": "X-1",
+                  "issue_date": "30/06/2030",
+                  "validity_end": "30/06/2030"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "APH-2.5-VAL-001",
+      "clause": "Cl. 2.5",
+      "clause_confirmed": false,
+      "title": "Fire certificate validity",
+      "family": "validity",
+      "approval": "approved",
+      "severity": "major",
+      "tier": "A",
+      "message_template": "{label} expired: validity ended {date}, before submission date {submission}.",
+      "check": {
+        "type": "validity",
+        "params": {
+          "doc_type": "fire_noc",
+          "label": "Fire certificate",
+          "warn_days": 60
+        }
+      },
+      "tests": [
+        {
+          "name": "expired -> deficiency",
+          "expect": "deficiency",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [
+              {
+                "type": "fire_noc",
+                "fields": {
+                  "validity_end": "30/06/2024"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "valid -> pass",
+          "expect": "pass",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [
+              {
+                "type": "fire_noc",
+                "fields": {
+                  "validity_end": "30/06/2030"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "nearing expiry -> needs_review",
+          "expect": "needs_review",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [
+              {
+                "type": "fire_noc",
+                "fields": {
+                  "validity_end": "2026-11-20"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "ambiguous with differing outcome -> needs_review",
+          "expect": "needs_review",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [
+              {
+                "type": "fire_noc",
+                "fields": {
+                  "validity_end": "05/12/2026"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "low confidence -> needs_review",
+          "expect": "needs_review",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [
+              {
+                "type": "fire_noc",
+                "confidence": 0.4,
+                "fields": {
+                  "validity_end": "30/06/2030"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "APH-2.5-VAL-002",
+      "clause": "Cl. 2.5",
+      "clause_confirmed": false,
+      "title": "Occupancy certificate validity",
+      "family": "validity",
+      "approval": "approved",
+      "severity": "major",
+      "tier": "A",
+      "message_template": "{label} expired: validity ended {date}, before submission date {submission}.",
+      "check": {
+        "type": "validity",
+        "params": {
+          "doc_type": "occupancy_certificate",
+          "label": "Occupancy certificate",
+          "warn_days": 60
+        }
+      },
+      "tests": [
+        {
+          "name": "expired -> deficiency",
+          "expect": "deficiency",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [
+              {
+                "type": "occupancy_certificate",
+                "fields": {
+                  "validity_end": "30/06/2024"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "valid -> pass",
+          "expect": "pass",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [
+              {
+                "type": "occupancy_certificate",
+                "fields": {
+                  "validity_end": "30/06/2030"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "nearing expiry -> needs_review",
+          "expect": "needs_review",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [
+              {
+                "type": "occupancy_certificate",
+                "fields": {
+                  "validity_end": "2026-11-20"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "ambiguous with differing outcome -> needs_review",
+          "expect": "needs_review",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [
+              {
+                "type": "occupancy_certificate",
+                "fields": {
+                  "validity_end": "05/12/2026"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "low confidence -> needs_review",
+          "expect": "needs_review",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [
+              {
+                "type": "occupancy_certificate",
+                "confidence": 0.4,
+                "fields": {
+                  "validity_end": "30/06/2030"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "APH-2.5-VAL-003",
+      "clause": "Cl. 2.5",
+      "clause_confirmed": false,
+      "title": "Structural stability certificate validity",
+      "family": "validity",
+      "approval": "approved",
+      "severity": "major",
+      "tier": "A",
+      "message_template": "{label} expired: validity ended {date}, before submission date {submission}.",
+      "check": {
+        "type": "validity",
+        "params": {
+          "doc_type": "structural_stability_certificate",
+          "label": "Structural stability certificate",
+          "warn_days": 60
+        }
+      },
+      "tests": [
+        {
+          "name": "expired -> deficiency",
+          "expect": "deficiency",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [
+              {
+                "type": "structural_stability_certificate",
+                "fields": {
+                  "validity_end": "30/06/2024"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "valid -> pass",
+          "expect": "pass",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [
+              {
+                "type": "structural_stability_certificate",
+                "fields": {
+                  "validity_end": "30/06/2030"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "nearing expiry -> needs_review",
+          "expect": "needs_review",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [
+              {
+                "type": "structural_stability_certificate",
+                "fields": {
+                  "validity_end": "2026-11-20"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "ambiguous with differing outcome -> needs_review",
+          "expect": "needs_review",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [
+              {
+                "type": "structural_stability_certificate",
+                "fields": {
+                  "validity_end": "05/12/2026"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "low confidence -> needs_review",
+          "expect": "needs_review",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [
+              {
+                "type": "structural_stability_certificate",
+                "confidence": 0.4,
+                "fields": {
+                  "validity_end": "30/06/2030"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

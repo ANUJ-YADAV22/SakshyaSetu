@@ -1,0 +1,467 @@
+{
+  "id": "eoa_increase_intake",
+  "name": "Increase in Intake / Additional Course",
+  "scope": "eoa_increase_intake",
+  "version": "1.0.0",
+  "effective_date": "2024-01-01",
+  "source_handbook": "AICTE Approval Process Handbook (edition/year to be confirmed by regulatory expert)",
+  "approval": "approved",
+  "clause": "Cl. 2.6; Annexure 2.6",
+  "checklist": [
+    {
+      "doc_type": "affidavit",
+      "label": "Affidavit",
+      "required": true
+    },
+    {
+      "doc_type": "faculty_list",
+      "label": "Faculty list",
+      "required": true
+    },
+    {
+      "doc_type": "floor_plan",
+      "label": "Floor plan",
+      "required": true
+    },
+    {
+      "doc_type": "fire_noc",
+      "label": "Fire certificate / NOC",
+      "required": true
+    }
+  ],
+  "ambiguities": [
+    "Faculty ratio and built-up area thresholds are intentionally NOT hard-coded; add them as approved parameters after regulatory-expert confirmation."
+  ],
+  "rules": [
+    {
+      "rule_id": "APH-2.6-DOC-001",
+      "clause": "Cl. 2.6 / Annexure 2.6",
+      "clause_confirmed": false,
+      "title": "Affidavit submitted",
+      "family": "completeness",
+      "approval": "approved",
+      "severity": "major",
+      "tier": "A",
+      "message_template": "Required document missing: {label}.",
+      "check": {
+        "type": "document_present",
+        "params": {
+          "doc_type": "affidavit",
+          "label": "Affidavit"
+        }
+      },
+      "tests": [
+        {
+          "name": "absent -> deficiency",
+          "expect": "deficiency",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": []
+          }
+        },
+        {
+          "name": "present -> pass",
+          "expect": "pass",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [
+              {
+                "type": "affidavit",
+                "fields": {}
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "APH-2.6-DOC-002",
+      "clause": "Cl. 2.6 / Annexure 2.6",
+      "clause_confirmed": false,
+      "title": "Faculty list submitted",
+      "family": "completeness",
+      "approval": "approved",
+      "severity": "major",
+      "tier": "A",
+      "message_template": "Required document missing: {label}.",
+      "check": {
+        "type": "document_present",
+        "params": {
+          "doc_type": "faculty_list",
+          "label": "Faculty list"
+        }
+      },
+      "tests": [
+        {
+          "name": "absent -> deficiency",
+          "expect": "deficiency",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": []
+          }
+        },
+        {
+          "name": "present -> pass",
+          "expect": "pass",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [
+              {
+                "type": "faculty_list",
+                "fields": {}
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "APH-2.6-DOC-003",
+      "clause": "Cl. 2.6 / Annexure 2.6",
+      "clause_confirmed": false,
+      "title": "Floor plan / built-up area statement submitted",
+      "family": "completeness",
+      "approval": "approved",
+      "severity": "major",
+      "tier": "A",
+      "message_template": "Required document missing: {label}.",
+      "check": {
+        "type": "document_present",
+        "params": {
+          "doc_type": "floor_plan",
+          "label": "Floor plan / built-up area statement"
+        }
+      },
+      "tests": [
+        {
+          "name": "absent -> deficiency",
+          "expect": "deficiency",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": []
+          }
+        },
+        {
+          "name": "present -> pass",
+          "expect": "pass",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [
+              {
+                "type": "floor_plan",
+                "fields": {}
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "APH-2.6-DOC-004",
+      "clause": "Cl. 2.6 / Annexure 2.6",
+      "clause_confirmed": false,
+      "title": "Fire certificate / NOC submitted",
+      "family": "completeness",
+      "approval": "approved",
+      "severity": "major",
+      "tier": "A",
+      "message_template": "Required document missing: {label}.",
+      "check": {
+        "type": "document_present",
+        "params": {
+          "doc_type": "fire_noc",
+          "label": "Fire certificate / NOC"
+        }
+      },
+      "tests": [
+        {
+          "name": "absent -> deficiency",
+          "expect": "deficiency",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": []
+          }
+        },
+        {
+          "name": "present -> pass",
+          "expect": "pass",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [
+              {
+                "type": "fire_noc",
+                "fields": {}
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "APH-2.6-VAL-001",
+      "clause": "Cl. 2.6",
+      "clause_confirmed": false,
+      "title": "Fire certificate validity",
+      "family": "validity",
+      "approval": "approved",
+      "severity": "major",
+      "tier": "A",
+      "message_template": "{label} expired: validity ended {date}, before submission date {submission}.",
+      "check": {
+        "type": "validity",
+        "params": {
+          "doc_type": "fire_noc",
+          "label": "Fire certificate",
+          "warn_days": 60
+        }
+      },
+      "tests": [
+        {
+          "name": "expired -> deficiency",
+          "expect": "deficiency",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [
+              {
+                "type": "fire_noc",
+                "fields": {
+                  "validity_end": "30/06/2024"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "valid -> pass",
+          "expect": "pass",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [
+              {
+                "type": "fire_noc",
+                "fields": {
+                  "validity_end": "30/06/2030"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "nearing expiry -> needs_review",
+          "expect": "needs_review",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [
+              {
+                "type": "fire_noc",
+                "fields": {
+                  "validity_end": "2026-11-20"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "ambiguous with differing outcome -> needs_review",
+          "expect": "needs_review",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [
+              {
+                "type": "fire_noc",
+                "fields": {
+                  "validity_end": "05/12/2026"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "low confidence -> needs_review",
+          "expect": "needs_review",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [
+              {
+                "type": "fire_noc",
+                "confidence": 0.4,
+                "fields": {
+                  "validity_end": "30/06/2030"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "APH-2.6-REC-001",
+      "clause": "Cl. 2.6 (comparison with approved intake)",
+      "clause_confirmed": false,
+      "title": "Proposed intake compared with approved intake",
+      "family": "record",
+      "approval": "approved",
+      "severity": "info",
+      "tier": "A",
+      "message_template": "Intake change recorded for reviewer.",
+      "check": {
+        "type": "declared_vs_record",
+        "params": {
+          "declared_key": "proposed_intake",
+          "record_key": "approved_intake",
+          "op": "diff",
+          "label": "intake"
+        }
+      },
+      "tests": [
+        {
+          "name": "recorded -> pass",
+          "expect": "pass",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [],
+            "declared": {
+              "proposed_intake": 120
+            },
+            "records": {
+              "approved_intake": 60
+            }
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "APH-2.6-REC-002",
+      "clause": "Cl. 2.6 (pending-inquiry check)",
+      "clause_confirmed": false,
+      "title": "No pending inquiry on institution record",
+      "family": "record",
+      "approval": "approved",
+      "severity": "major",
+      "tier": "B",
+      "message_template": "Institution record shows a pending inquiry ({label}); reviewer must confirm before proceeding.",
+      "check": {
+        "type": "declared_vs_record",
+        "params": {
+          "declared_key": "proposed_intake",
+          "record_key": "pending_inquiry",
+          "op": "flag_true",
+          "label": "pending inquiry"
+        }
+      },
+      "tests": [
+        {
+          "name": "pending -> needs_review",
+          "expect": "needs_review",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [],
+            "declared": {
+              "proposed_intake": 120
+            },
+            "records": {
+              "pending_inquiry": true
+            }
+          }
+        },
+        {
+          "name": "none -> pass",
+          "expect": "pass",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [],
+            "declared": {
+              "proposed_intake": 120
+            },
+            "records": {
+              "pending_inquiry": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "APH-2.6-RATIO-001",
+      "clause": "Cl. 2.6 (faculty ratio)",
+      "clause_confirmed": false,
+      "title": "Student-faculty ratio within configured maximum",
+      "family": "quantitative",
+      "approval": "draft",
+      "severity": "major",
+      "tier": "B",
+      "message_template": "Students per faculty {ratio} exceeds configured maximum {max}.",
+      "check": {
+        "type": "ratio_max",
+        "params": {
+          "students_key": "total_students",
+          "faculty_key": "faculty_count",
+          "max_ratio": 20,
+          "parameters_verified": false
+        }
+      },
+      "notes": "DRAFT: numeric threshold NOT yet confirmed against the authorised APH. Engine skips draft rules and reports them as not checked.",
+      "tests": [
+        {
+          "name": "above max -> deficiency",
+          "expect": "deficiency",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [],
+            "declared": {
+              "total_students": 600,
+              "faculty_count": 20
+            }
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "APH-2.6-FAC-001",
+      "clause": "Cl. 2.6 (faculty requirement)",
+      "clause_confirmed": false,
+      "title": "Listed faculty meets the computed requirement for the proposed intake",
+      "family": "quantitative",
+      "approval": "draft",
+      "severity": "major",
+      "tier": "B",
+      "message_template": "Listed faculty {listed} is below the computed requirement {need} (= ceil({intake} x {years} / {ratio})); short by {short}.",
+      "check": {
+        "type": "faculty_required",
+        "params": {
+          "intake_key": "proposed_intake",
+          "faculty_key": "faculty_count",
+          "program_years": 4,
+          "faculty_ratio": 20,
+          "parameters_verified": false
+        }
+      },
+      "notes": "DRAFT: programme years and students-per-faculty are example parameters, not confirmed against the authorised APH. Approve through the maker-checker flow after expert confirmation.",
+      "tests": [
+        {
+          "name": "enough faculty -> pass",
+          "expect": "pass",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [],
+            "declared": {
+              "proposed_intake": 120,
+              "faculty_count": 24
+            }
+          }
+        },
+        {
+          "name": "short of requirement -> deficiency",
+          "expect": "deficiency",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [],
+            "declared": {
+              "proposed_intake": 120,
+              "faculty_count": 20
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

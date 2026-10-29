@@ -1,0 +1,236 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+  Sakshya design tokens.
+  Idea: a scrutiny desk where evidence is *marked on the original*, like a highlighter on paper.
+  - ink      : deep green-black chrome and text
+  - verdigris: the one action colour (seals, buttons, links)
+  - marigold : the highlighter. Used only where evidence is pointed at (viewer boxes, brand mark, demo/mock labels)
+  - vermilion: deficiency / mismatch
+  Existing pages use Tailwind slate/indigo/emerald/fuchsia/red names; they are re-mapped here so the whole app
+  moves to this palette without touching every page.
+*/
+@theme {
+  --font-sans: "Hanken Grotesk", "Noto Sans Devanagari", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --color-slate-50:  #F5F7F4;
+  --color-slate-100: #EBEFE9;
+  --color-slate-200: #D9E0D6;
+  --color-slate-300: #BCC6B9;
+  --color-slate-400: #8E9B8C;
+  --color-slate-500: #667464;
+  --color-slate-600: #4E5B4D;
+  --color-slate-700: #3A453A;
+  --color-slate-800: #263028;
+  --color-slate-900: #15201A;
+  --color-slate-950: #0C1510;
+
+  --color-indigo-50:  #E8F3F0;
+  --color-indigo-100: #CFE6E0;
+  --color-indigo-200: #A5D0C6;
+  --color-indigo-300: #6FB1A3;
+  --color-indigo-400: #3F9484;
+  --color-indigo-500: #1F7A6A;
+  --color-indigo-600: #0F6556;
+  --color-indigo-700: #0B5246;
+  --color-indigo-800: #0A4037;
+  --color-indigo-900: #082F29;
+
+  --color-emerald-50:  #EDF7EE;
+  --color-emerald-100: #D5ECD8;
+  --color-emerald-200: #B1DDB7;
+  --color-emerald-300: #7FC48A;
+  --color-emerald-600: #2C7A3E;
+  --color-emerald-700: #226232;
+  --color-emerald-800: #1B4D28;
+  --color-emerald-900: #143A1E;
+
+  --color-fuchsia-50:  #FFF8DC;
+  --color-fuchsia-100: #FEEFB0;
+  --color-fuchsia-200: #FBE185;
+  --color-fuchsia-300: #F4CB45;
+  --color-fuchsia-600: #946500;
+  --color-fuchsia-700: #7A5300;
+  --color-fuchsia-800: #5F4100;
+  --color-fuchsia-900: #4A3300;
+
+  --color-red-50:  #FCEFEC;
+  --color-red-100: #F8DAD4;
+  --color-red-200: #EFB7AC;
+  --color-red-300: #E48B7A;
+  --color-red-500: #CF4A36;
+  --color-red-600: #B93A28;
+  --color-red-700: #9A2F20;
+  --color-red-800: #7C261A;
+  --color-red-900: #611E15;
+}
+
+:root {
+  --paper: #F1F4EF;
+  --panel: #FBFCFA;
+  --ink: #15201A;
+  --rail: #11201B;
+  --rule: #D9E0D6;
+  --marker: #F4CB45;
+}
+.dark {
+  --paper: #0E1612;
+  --panel: #15201A;
+  --ink: #E8EEE6;
+  --rail: #0A110E;
+  --rule: #2A372E;
+}
+
+@layer base {
+  html { color-scheme: light; }
+  html.dark { color-scheme: dark; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.5;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background-image: radial-gradient(rgba(15,101,86,.09) 1px, transparent 1.2px);
+    background-size: 22px 22px;
+  }
+  .dark body { background-image: radial-gradient(rgba(255,255,255,.045) 1px, transparent 1.2px); }
+  :focus-visible { outline: 2px solid #0F6556; outline-offset: 2px; border-radius: 4px; }
+  select option { background: #fff; color: #15201A; }
+  .dark select option { background: #15201A; color: #E8EEE6; }
+}
+
+/* Headings and big numerals. (Existing pages call this class font-serif; it now maps to the display face.) */
+.font-serif, .font-display {
+  font-family: "Bricolage Grotesque", "Noto Sans Devanagari", system-ui, sans-serif;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  font-variation-settings: "opsz" 48;
+}
+
+/* The highlighter: the one signature device. */
+.hl {
+  background-image: linear-gradient(transparent 58%, var(--marker) 58%, var(--marker) 92%, transparent 92%);
+  padding: 0 0.12em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+/* Surfaces: paper sheets with a soft ground shadow. */
+.panel { background: var(--panel); border: 1px solid var(--rule); border-radius: 12px;
+  box-shadow: 0 1px 2px rgba(17,32,27,.05), 0 14px 32px -22px rgba(17,32,27,.35); }
+.panel-lift { transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
+.panel-lift:hover { transform: translateY(-2px); border-color: #6FB1A3; box-shadow: 0 2px 4px rgba(17,32,27,.06), 0 22px 40px -22px rgba(15,101,86,.45); }
+
+/* Stacked tally bar on the Case desk */
+.tally { display: flex; height: 14px; border-radius: 3px; overflow: hidden; background: var(--rule); }
+.tally > span { display: block; min-width: 3px; }
+
+/* Proof-card seal ring */
+.seal {
+  width: 38px; height: 38px; border-radius: 50%;
+  display: grid; place-items: center; flex: none;
+  border: 2px solid currentColor;
+  box-shadow: inset 0 0 0 3px var(--panel), inset 0 0 0 4px currentColor;
+}
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-thumb { background: rgba(102, 116, 100, 0.4); border-radius: 9999px; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+
+@media print {
+  aside, header.app-header, .no-print { display: none !important; }
+  body { background: #fff !important; font-size: 12px; }
+  .pl-64, .md\:pl-64 { padding-left: 0 !important; }
+  main { max-width: 100% !important; padding: 0 !important; }
+  .panel { break-inside: avoid; }
+}
+
+
+/* ---------- Visual layer v2 ---------- */
+@keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+.rise { animation: rise .55s cubic-bezier(.2,.7,.2,1) both; animation-delay: calc(var(--i, 0) * 70ms); }
+@keyframes shimmer { from { background-position: 200% 0; } to { background-position: -200% 0; } }
+.skeleton { border-radius: 10px; background: linear-gradient(90deg, var(--rule) 25%, rgba(255,255,255,.55) 50%, var(--rule) 75%); background-size: 200% 100%; animation: shimmer 1.6s linear infinite; }
+.dark .skeleton { background: linear-gradient(90deg, #1b2a21 25%, #24352a 50%, #1b2a21 75%); background-size: 200% 100%; }
+
+/* Hero band: ink-green desk with ruled-paper lines and a marigold glow */
+.hero { position: relative; overflow: hidden; border-radius: 18px; color: #E8EEE6; padding: 26px 28px 22px;
+  background:
+    radial-gradient(820px 320px at 92% -30%, rgba(244,203,69,.28), transparent 62%),
+    radial-gradient(640px 360px at -5% 130%, rgba(63,148,132,.42), transparent 62%),
+    linear-gradient(135deg, #0D2A23 0%, #11201B 70%);
+  box-shadow: 0 24px 50px -30px rgba(8,30,24,.75); }
+.hero::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+  background-image: repeating-linear-gradient(0deg, transparent 0 35px, rgba(255,255,255,.04) 35px 36px); }
+.hero > * { position: relative; z-index: 1; }
+.glass { background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.13); border-radius: 14px; backdrop-filter: blur(6px);
+  transition: transform .18s ease, background .18s ease, border-color .18s ease; }
+a.glass:hover, button.glass:hover { transform: translateY(-2px); background: rgba(255,255,255,.12); border-color: rgba(244,203,69,.55); }
+
+/* Tables inside panels */
+.panel table { border-collapse: collapse; width: 100%; }
+.panel thead th { font-size: 11px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: #667464; padding-bottom: 8px; }
+.panel tbody tr { transition: background-color .12s ease; }
+.panel tbody tr:hover { background: rgba(15,101,86,.055); }
+.dark .panel tbody tr:hover { background: rgba(255,255,255,.04); }
+
+/* Form controls */
+input:not([type=checkbox]):not([type=radio]):not([type=range]):not([type=file]), select, textarea {
+  border-radius: 9px; transition: border-color .15s ease, box-shadow .15s ease; }
+input:not([type=checkbox]):not([type=radio]):not([type=range]):focus, select:focus, textarea:focus {
+  outline: none; border-color: #1F7A6A; box-shadow: 0 0 0 3px rgba(31,122,106,.2); }
+
+/* Dark mode: the slate/indigo remap above is light-only, so invert the commonly used utilities here */
+.dark .text-slate-900, .dark .text-slate-800 { color: #E8EEE6; }
+.dark .text-slate-700, .dark .text-slate-600 { color: #B7C3B5; }
+.dark .text-slate-500 { color: #8E9B8C; }
+.dark .text-indigo-700, .dark .text-indigo-600 { color: #6FB1A3; }
+.dark .bg-white, .dark .bg-slate-50 { background-color: var(--panel); }
+.dark .bg-slate-100, .dark .bg-slate-200 { background-color: #1d2a22; }
+.dark .border-slate-200, .dark .border-slate-300 { border-color: var(--rule); }
+.dark input, .dark select, .dark textarea { background-color: #101a15; color: var(--ink); }
+.dark .bg-red-50 { background-color: rgba(207,74,54,.14); } .dark .text-red-800, .dark .text-red-700 { color: #F1B0A5; }
+.dark .bg-emerald-50 { background-color: rgba(44,122,62,.16); } .dark .text-emerald-800, .dark .text-emerald-700 { color: #9AD6A5; }
+.dark .bg-amber-50, .dark .bg-amber-100, .dark .bg-fuchsia-50 { background-color: rgba(244,203,69,.12); } .dark .text-amber-800, .dark .text-amber-900, .dark .text-fuchsia-800 { color: #F4CB45; }
+.dark .bg-indigo-50 { background-color: rgba(31,122,106,.18); }
+.dark .bg-red-100 { background-color: rgba(207,74,54,.2); } .dark .bg-emerald-100 { background-color: rgba(44,122,62,.22); } .dark .bg-orange-50 { background-color: rgba(230,126,34,.14); }
+.dark .bg-yellow-100 { background-color: rgba(244,203,69,.16); }
+
+/* ---------- Dossier sheets: documents as stamped paper ---------- */
+.sheet-wrap { animation: rise .55s cubic-bezier(.2,.7,.2,1) both; animation-delay: calc(var(--i, 0) * 70ms); }
+.sheet { position: relative; display: block; width: 100%; height: 100%; min-height: 218px; text-align: left; padding: 20px 16px 58px;
+  color: #15201A; background-color: #FFFEFA;
+  background-image: repeating-linear-gradient(transparent 0 25px, rgba(15,101,86,.09) 25px 26px);
+  border: 1px solid #E1E5D6; border-top: 5px solid var(--tone, #8E9B8C); border-radius: 3px 3px 3px 3px;
+  transform: rotate(var(--rot, 0deg)); transform-origin: 50% 90%;
+  box-shadow: 0 1px 1px rgba(0,0,0,.06), 0 14px 24px -14px rgba(17,32,27,.55);
+  transition: transform .22s cubic-bezier(.2,.7,.2,1), box-shadow .22s ease; }
+.sheet::before { content: ""; position: absolute; top: -1px; right: -1px; width: 28px; height: 28px;
+  background: linear-gradient(225deg, var(--paper) 50%, #D8DDCB 50%); box-shadow: -3px 3px 5px -2px rgba(0,0,0,.18); }
+.sheet:hover { transform: rotate(0deg) translateY(-7px) scale(1.025); z-index: 3; box-shadow: 0 2px 2px rgba(0,0,0,.06), 0 28px 34px -16px rgba(17,32,27,.6); }
+.sheet-active { outline: 3px solid #F4CB45; outline-offset: 2px; }
+.sheet-tab { display: inline-flex; align-items: center; gap: 5px; border-radius: 4px; padding: 2px 7px; font-size: 10px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: #fff; background: var(--tone, #8E9B8C); }
+.stamp { position: absolute; right: 12px; bottom: 14px; transform: rotate(-9deg); padding: 3px 9px; border: 2.5px solid currentColor; border-radius: 6px; opacity: .9;
+  font: 800 12px/1.25 var(--font-mono), ui-monospace, monospace; letter-spacing: .15em; text-transform: uppercase;
+  box-shadow: inset 0 0 0 2px #FFFEFA, inset 0 0 0 3.5px currentColor; animation: stampIn .5s cubic-bezier(.2,1.5,.4,1) both; animation-delay: calc(var(--i, 0) * 70ms + 420ms); }
+@keyframes stampIn { 0% { opacity: 0; transform: rotate(-9deg) scale(2.4); } 70% { opacity: .95; } 100% { opacity: .9; transform: rotate(-9deg) scale(1); } }
+@keyframes stampHit { 0% { transform: rotate(-9deg) scale(1.35); } 100% { transform: rotate(-9deg) scale(1); } }
+.sheet:hover .stamp { animation: stampHit .3s cubic-bezier(.2,1.5,.4,1); }
+@media (prefers-reduced-motion: reduce) { .sheet, .stamp, .sheet-wrap { animation: none !important; transition: none !important; } }
+
+/* Print: a clean one-page brief (used by Reports > Print brief) */
+@media print {
+  aside, .app-header, button, select, input { display: none !important; }
+  body { background: #fff !important; background-image: none !important; }
+  main, .md\:pl-60 { padding-left: 0 !important; }
+  .panel { box-shadow: none !important; break-inside: avoid; }
+  .rise { animation: none !important; }
+}

@@ -1,0 +1,301 @@
+{
+  "id": "eoa_change_of_site",
+  "name": "Change of Site / Location",
+  "scope": "eoa_change_of_site",
+  "version": "1.0.0",
+  "effective_date": "2024-01-01",
+  "source_handbook": "AICTE Approval Process Handbook (edition/year to be confirmed by regulatory expert)",
+  "approval": "approved",
+  "clause": "Cl. 2.17; Annexures-1 and 2.3",
+  "checklist": [
+    {
+      "doc_type": "land_document",
+      "label": "Land / building documents",
+      "required": true
+    },
+    {
+      "doc_type": "floor_plan",
+      "label": "Floor plans",
+      "required": true
+    },
+    {
+      "doc_type": "evc_video",
+      "label": "EVC video with GPS",
+      "required": true
+    },
+    {
+      "doc_type": "satellite_map_evidence",
+      "label": "Satellite / map evidence",
+      "required": true
+    },
+    {
+      "doc_type": "fire_noc",
+      "label": "Fire certificate",
+      "required": false
+    }
+  ],
+  "ambiguities": [],
+  "rules": [
+    {
+      "rule_id": "APH-2.17-DOC-001",
+      "clause": "Cl. 2.17 / Annexure 2.3",
+      "clause_confirmed": false,
+      "title": "Land / building documents submitted",
+      "family": "completeness",
+      "approval": "approved",
+      "severity": "major",
+      "tier": "A",
+      "message_template": "Required document missing: {label}.",
+      "check": {
+        "type": "document_present",
+        "params": {
+          "doc_type": "land_document",
+          "label": "Land / building documents"
+        }
+      },
+      "tests": [
+        {
+          "name": "absent -> deficiency",
+          "expect": "deficiency",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": []
+          }
+        },
+        {
+          "name": "present -> pass",
+          "expect": "pass",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [
+              {
+                "type": "land_document",
+                "fields": {}
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "APH-2.17-DOC-002",
+      "clause": "Cl. 2.17 / Annexure 2.3",
+      "clause_confirmed": false,
+      "title": "Floor plans submitted",
+      "family": "completeness",
+      "approval": "approved",
+      "severity": "major",
+      "tier": "A",
+      "message_template": "Required document missing: {label}.",
+      "check": {
+        "type": "document_present",
+        "params": {
+          "doc_type": "floor_plan",
+          "label": "Floor plans"
+        }
+      },
+      "tests": [
+        {
+          "name": "absent -> deficiency",
+          "expect": "deficiency",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": []
+          }
+        },
+        {
+          "name": "present -> pass",
+          "expect": "pass",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [
+              {
+                "type": "floor_plan",
+                "fields": {}
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "APH-2.17-DOC-003",
+      "clause": "Cl. 2.17 / Annexure-1",
+      "clause_confirmed": false,
+      "title": "EVC video with GPS submitted",
+      "family": "completeness",
+      "approval": "approved",
+      "severity": "major",
+      "tier": "A",
+      "message_template": "Required document missing: {label}.",
+      "check": {
+        "type": "document_present",
+        "params": {
+          "doc_type": "evc_video",
+          "label": "EVC video with GPS"
+        }
+      },
+      "tests": [
+        {
+          "name": "absent -> deficiency",
+          "expect": "deficiency",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": []
+          }
+        },
+        {
+          "name": "present -> pass",
+          "expect": "pass",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [
+              {
+                "type": "evc_video",
+                "fields": {}
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "APH-2.17-DOC-004",
+      "clause": "Cl. 2.17",
+      "clause_confirmed": false,
+      "title": "Satellite / map evidence submitted",
+      "family": "completeness",
+      "approval": "approved",
+      "severity": "major",
+      "tier": "A",
+      "message_template": "Required document missing: {label}.",
+      "check": {
+        "type": "document_present",
+        "params": {
+          "doc_type": "satellite_map_evidence",
+          "label": "Satellite / map evidence"
+        }
+      },
+      "tests": [
+        {
+          "name": "absent -> deficiency",
+          "expect": "deficiency",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": []
+          }
+        },
+        {
+          "name": "present -> pass",
+          "expect": "pass",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [
+              {
+                "type": "satellite_map_evidence",
+                "fields": {}
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "APH-2.17-VAL-001",
+      "clause": "Cl. 2.17",
+      "clause_confirmed": false,
+      "title": "Fire certificate validity",
+      "family": "validity",
+      "approval": "approved",
+      "severity": "major",
+      "tier": "A",
+      "message_template": "{label} expired: validity ended {date}, before submission date {submission}.",
+      "check": {
+        "type": "validity",
+        "params": {
+          "doc_type": "fire_noc",
+          "label": "Fire certificate",
+          "warn_days": 60
+        }
+      },
+      "tests": [
+        {
+          "name": "expired -> deficiency",
+          "expect": "deficiency",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [
+              {
+                "type": "fire_noc",
+                "fields": {
+                  "validity_end": "30/06/2024"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "valid -> pass",
+          "expect": "pass",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [
+              {
+                "type": "fire_noc",
+                "fields": {
+                  "validity_end": "30/06/2030"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "nearing expiry -> needs_review",
+          "expect": "needs_review",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [
+              {
+                "type": "fire_noc",
+                "fields": {
+                  "validity_end": "2026-11-20"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "ambiguous with differing outcome -> needs_review",
+          "expect": "needs_review",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [
+              {
+                "type": "fire_noc",
+                "fields": {
+                  "validity_end": "05/12/2026"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "low confidence -> needs_review",
+          "expect": "needs_review",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [
+              {
+                "type": "fire_noc",
+                "confidence": 0.4,
+                "fields": {
+                  "validity_end": "30/06/2030"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

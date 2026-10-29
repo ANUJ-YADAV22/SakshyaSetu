@@ -1,0 +1,310 @@
+{
+  "id": "eoa_change_name_address",
+  "name": "Change in Name/Address of Trust/Society/Company",
+  "scope": "eoa_change_name_address",
+  "version": "1.0.0",
+  "effective_date": "2024-01-01",
+  "source_handbook": "AICTE Approval Process Handbook (edition/year to be confirmed by regulatory expert)",
+  "approval": "approved",
+  "clause": "Cl. 2.20; Annexure-2.13",
+  "checklist": [
+    {
+      "doc_type": "registration_certificate",
+      "label": "Registration records",
+      "required": true
+    },
+    {
+      "doc_type": "registrar_approval",
+      "label": "Registrar approval",
+      "required": true
+    },
+    {
+      "doc_type": "trust_deed",
+      "label": "Trust deed",
+      "required": false
+    },
+    {
+      "doc_type": "land_document",
+      "label": "Land transfer documents",
+      "required": true
+    },
+    {
+      "doc_type": "bank_proof",
+      "label": "Bank proof",
+      "required": true
+    }
+  ],
+  "ambiguities": [],
+  "rules": [
+    {
+      "rule_id": "APH-2.20-DOC-001",
+      "clause": "Cl. 2.20 / Annexure-2.13",
+      "clause_confirmed": false,
+      "title": "Registration records submitted",
+      "family": "completeness",
+      "approval": "approved",
+      "severity": "major",
+      "tier": "A",
+      "message_template": "Required document missing: {label}.",
+      "check": {
+        "type": "document_present",
+        "params": {
+          "doc_type": "registration_certificate",
+          "label": "Registration records"
+        }
+      },
+      "tests": [
+        {
+          "name": "absent -> deficiency",
+          "expect": "deficiency",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": []
+          }
+        },
+        {
+          "name": "present -> pass",
+          "expect": "pass",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [
+              {
+                "type": "registration_certificate",
+                "fields": {}
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "APH-2.20-DOC-002",
+      "clause": "Cl. 2.20 / Annexure-2.13",
+      "clause_confirmed": false,
+      "title": "Registrar approval submitted",
+      "family": "completeness",
+      "approval": "approved",
+      "severity": "major",
+      "tier": "A",
+      "message_template": "Required document missing: {label}.",
+      "check": {
+        "type": "document_present",
+        "params": {
+          "doc_type": "registrar_approval",
+          "label": "Registrar approval"
+        }
+      },
+      "tests": [
+        {
+          "name": "absent -> deficiency",
+          "expect": "deficiency",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": []
+          }
+        },
+        {
+          "name": "present -> pass",
+          "expect": "pass",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [
+              {
+                "type": "registrar_approval",
+                "fields": {}
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "APH-2.20-DOC-003",
+      "clause": "Cl. 2.20 / Annexure-2.13",
+      "clause_confirmed": false,
+      "title": "Land transfer documents submitted",
+      "family": "completeness",
+      "approval": "approved",
+      "severity": "major",
+      "tier": "A",
+      "message_template": "Required document missing: {label}.",
+      "check": {
+        "type": "document_present",
+        "params": {
+          "doc_type": "land_document",
+          "label": "Land transfer documents"
+        }
+      },
+      "tests": [
+        {
+          "name": "absent -> deficiency",
+          "expect": "deficiency",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": []
+          }
+        },
+        {
+          "name": "present -> pass",
+          "expect": "pass",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [
+              {
+                "type": "land_document",
+                "fields": {}
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "APH-2.20-DOC-004",
+      "clause": "Cl. 2.20 / Annexure-2.13",
+      "clause_confirmed": false,
+      "title": "Bank proof submitted",
+      "family": "completeness",
+      "approval": "approved",
+      "severity": "major",
+      "tier": "A",
+      "message_template": "Required document missing: {label}.",
+      "check": {
+        "type": "document_present",
+        "params": {
+          "doc_type": "bank_proof",
+          "label": "Bank proof"
+        }
+      },
+      "tests": [
+        {
+          "name": "absent -> deficiency",
+          "expect": "deficiency",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": []
+          }
+        },
+        {
+          "name": "present -> pass",
+          "expect": "pass",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [
+              {
+                "type": "bank_proof",
+                "fields": {}
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "APH-2.20-ID-001",
+      "clause": "Cl. 2.20 (consistent legal-entity identifiers)",
+      "clause_confirmed": false,
+      "title": "Legal-entity name consistent",
+      "family": "consistency",
+      "approval": "approved",
+      "severity": "major",
+      "tier": "A",
+      "message_template": "Legal-entity name inconsistent: {detail}.",
+      "check": {
+        "type": "cross_doc_match",
+        "params": {
+          "field": "legal_entity_name",
+          "kind": "name",
+          "label": "legal-entity name"
+        }
+      },
+      "tests": [
+        {
+          "name": "different -> deficiency",
+          "expect": "deficiency",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [
+              {
+                "type": "registration_certificate",
+                "fields": {
+                  "legal_entity_name": "Shree Vidya Education Society"
+                }
+              },
+              {
+                "type": "bank_proof",
+                "fields": {
+                  "legal_entity_name": "Om Sai Charitable Trust"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "APH-2.20-ORD-001",
+      "clause": "Cl. 2.20 (date order)",
+      "clause_confirmed": false,
+      "title": "Trust deed predates registration",
+      "family": "validity",
+      "approval": "approved",
+      "severity": "major",
+      "tier": "A",
+      "message_template": "Date order broken: {earlier} ({d1}) must not be later than {later} ({d2}).",
+      "check": {
+        "type": "date_order",
+        "params": {
+          "earlier": "trust_deed.issue_date",
+          "later": "registration_certificate.issue_date",
+          "earlier_label": "trust deed",
+          "later_label": "registration certificate"
+        }
+      },
+      "tests": [
+        {
+          "name": "registration before deed -> deficiency",
+          "expect": "deficiency",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [
+              {
+                "type": "trust_deed",
+                "fields": {
+                  "issue_date": "2010-05-20"
+                }
+              },
+              {
+                "type": "registration_certificate",
+                "fields": {
+                  "issue_date": "2009-01-15"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "ordered -> pass",
+          "expect": "pass",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [
+              {
+                "type": "trust_deed",
+                "fields": {
+                  "issue_date": "2008-05-20"
+                }
+              },
+              {
+                "type": "registration_certificate",
+                "fields": {
+                  "issue_date": "2009-01-15"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,324 @@
+{
+  "id": "common",
+  "name": "Common integrity & consistency rules",
+  "scope": "*",
+  "version": "1.0.0",
+  "effective_date": "2024-01-01",
+  "source_handbook": "AICTE Approval Process Handbook (edition/year to be confirmed by regulatory expert)",
+  "approval": "approved",
+  "ambiguities": [
+    "Whether a registrar approval dated before the application is a deficiency depends on category process; not hard-coded - needs regulatory expert ruling.",
+    "Fuzzy institution-name tolerance (0.92 match / 0.70 review) is an engineering default, not an APH value."
+  ],
+  "rules": [
+    {
+      "rule_id": "APH-GEN-DATE-001",
+      "clause": "General document-validity principles (clause ref to be confirmed)",
+      "clause_confirmed": false,
+      "title": "Irregular date checks on every dated document",
+      "family": "validity",
+      "approval": "approved",
+      "severity": "major",
+      "tier": "A",
+      "message_template": "{detail}",
+      "check": {
+        "type": "date_irregularities",
+        "params": {
+          "must_predate_application": [
+            "fire_noc",
+            "occupancy_certificate",
+            "structural_stability_certificate",
+            "audited_accounts"
+          ]
+        }
+      },
+      "tests": [
+        {
+          "name": "issue after validity -> deficiency",
+          "expect": "deficiency",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [
+              {
+                "type": "fire_noc",
+                "fields": {
+                  "issue_date": "2025-06-01",
+                  "validity_end": "2024-06-01"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "future issue date -> deficiency",
+          "expect": "deficiency",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [
+              {
+                "type": "fire_noc",
+                "uploaded_date": "2026-10-23",
+                "fields": {
+                  "issue_date": "2027-01-15",
+                  "validity_end": "2030-01-15"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "unparseable -> needs_review",
+          "expect": "needs_review",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [
+              {
+                "type": "fire_noc",
+                "fields": {
+                  "issue_date": "sometime last year"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "clean -> pass",
+          "expect": "pass",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [
+              {
+                "type": "fire_noc",
+                "fields": {
+                  "issue_date": "2025-06-01",
+                  "validity_end": "2030-06-01"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "APH-GEN-ID-001",
+      "clause": "Consistency of institution identity (clause ref to be confirmed)",
+      "clause_confirmed": false,
+      "title": "Institution name consistent across documents",
+      "family": "consistency",
+      "approval": "approved",
+      "severity": "major",
+      "tier": "A",
+      "message_template": "Institution name inconsistent across documents: {detail}.",
+      "check": {
+        "type": "cross_doc_match",
+        "params": {
+          "field": "institution_name",
+          "kind": "name",
+          "label": "institution name"
+        }
+      },
+      "tests": [
+        {
+          "name": "different names -> deficiency",
+          "expect": "deficiency",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [
+              {
+                "type": "fire_noc",
+                "fields": {
+                  "institution_name": "Alpha Engineering College"
+                }
+              },
+              {
+                "type": "affidavit",
+                "fields": {
+                  "institution_name": "Zenith Polytechnic"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "same names -> pass",
+          "expect": "pass",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [
+              {
+                "type": "fire_noc",
+                "fields": {
+                  "institution_name": "Alpha Engineering College"
+                }
+              },
+              {
+                "type": "affidavit",
+                "fields": {
+                  "institution_name": "Alpha Engineering College"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "APH-GEN-ID-002",
+      "clause": "Consistency of legal-entity identifiers (clause ref to be confirmed)",
+      "clause_confirmed": false,
+      "title": "Registration number consistent across documents",
+      "family": "consistency",
+      "approval": "approved",
+      "severity": "major",
+      "tier": "A",
+      "message_template": "Registration number inconsistent: {detail}.",
+      "check": {
+        "type": "cross_doc_match",
+        "params": {
+          "field": "registration_number",
+          "kind": "id",
+          "label": "registration number"
+        }
+      },
+      "tests": [
+        {
+          "name": "different ids -> deficiency",
+          "expect": "deficiency",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [
+              {
+                "type": "affidavit",
+                "fields": {
+                  "registration_number": "MH/123/2005"
+                }
+              },
+              {
+                "type": "trust_deed",
+                "fields": {
+                  "registration_number": "MH/999/2005"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "formatting differences -> pass",
+          "expect": "pass",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [
+              {
+                "type": "affidavit",
+                "fields": {
+                  "registration_number": "MH/123/2005"
+                }
+              },
+              {
+                "type": "trust_deed",
+                "fields": {
+                  "registration_number": "mh 123 2005"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "APH-GEN-REC-001",
+      "clause": "Validation against institutional records (clause ref to be confirmed)",
+      "clause_confirmed": false,
+      "title": "Institution name matches AICTE record",
+      "family": "record",
+      "approval": "approved",
+      "severity": "major",
+      "tier": "A",
+      "message_template": "Institution name '{submitted}' differs from record '{record}'.",
+      "check": {
+        "type": "record_match",
+        "params": {
+          "field": "institution_name",
+          "record_key": "institution_name",
+          "kind": "name",
+          "label": "institution name"
+        }
+      },
+      "tests": [
+        {
+          "name": "record differs -> deficiency",
+          "expect": "deficiency",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [
+              {
+                "type": "fire_noc",
+                "fields": {
+                  "institution_name": "Alpha Engineering College"
+                }
+              }
+            ],
+            "records": {
+              "institution_name": "Zenith Polytechnic"
+            }
+          }
+        },
+        {
+          "name": "record unavailable -> not_checked",
+          "expect": "not_checked",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [
+              {
+                "type": "fire_noc",
+                "fields": {
+                  "institution_name": "Alpha Engineering College"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "APH-GEN-REC-002",
+      "clause": "Validation against institutional records (clause ref to be confirmed)",
+      "clause_confirmed": false,
+      "title": "Registration number matches AICTE record",
+      "family": "record",
+      "approval": "approved",
+      "severity": "major",
+      "tier": "A",
+      "message_template": "Registration number '{submitted}' differs from record '{record}'.",
+      "check": {
+        "type": "record_match",
+        "params": {
+          "field": "registration_number",
+          "record_key": "registration_number",
+          "kind": "id",
+          "label": "registration number"
+        }
+      },
+      "tests": [
+        {
+          "name": "record differs -> deficiency",
+          "expect": "deficiency",
+          "ctx": {
+            "submission_date": "2026-10-23",
+            "docs": [
+              {
+                "type": "affidavit",
+                "fields": {
+                  "registration_number": "MH/123/2005"
+                }
+              }
+            ],
+            "records": {
+              "registration_number": "MH/777/2005"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
