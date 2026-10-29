@@ -1,0 +1,16 @@
+# Render Blueprint: backend only (the frontend goes on Vercel). Free plan = 512 MB RAM, sleeps after 15 min idle, ephemeral disk.
+services:
+  - type: web
+    name: sakshya-api
+    runtime: docker
+    plan: free
+    region: singapore
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    healthCheckPath: /api/v1/system/status
+    autoDeploy: true
+    envVars:
+      - key: SAKSHYA_AUTOSEED
+        value: "1"
+      - key: SAKSHYA_LLM
+        value: "off"
