@@ -1,6 +1,6 @@
 # Sakshya - evidence-first scrutiny support for AICTE (SIH26261)
 
-*Sakshya (साक्ष्य) means evidence. Formerly PramaanSetu. Team EvidenceX.*
+*Sakshya (साक्ष्य) means evidence. Formerly PramaanSetu. Team Agent Zero.*
 
 AI-assisted application validation, document authentication and regulatory compliance verification.
 **Agents propose, rules verify, humans decide.** The system never approves, rejects or accuses.
